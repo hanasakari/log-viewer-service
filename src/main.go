@@ -9,15 +9,15 @@ import (
 	"net/http"
 )
 
-// 升级http为websocket
+// up grader http to websocket
 var upGrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool {
 		return true
 	},
 }
 
-// 定义端口号参数形式
-var port = flag.Int("p", 8000, "请使用int类型参数")
+// setting port default 8000
+var port = flag.Int("p", 8000, "port is number please use int parameter")
 
 func main() {
 	flag.Parse()
