@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO chat</title>
+</head>
+<body>
+<ul id="messages"></ul>
+<form action="">
+    <button id="clickBtn">Send</button>
+</form>
+<script>
+    ws = new WebSocket("ws://localhost:8000");
+
+    ws.onopen =  () => {
+        ws.send("test connect");
+    }
+
+    ws.onmessage = (message) => {
+        console.log(message)
+    }
+
+    ws.onclose = () => {
+        console.log('close connect')
+    }
+
+    ws.onerror = (errMsg) => {
+        console.log(errMsg)
+    }
+
+    $('#clickBtn').click(function () {
+        s2.emit('start_task', "123123123");
+
+        socket.emit('notice', $('#m').val());
+
+        $('#m').val('');
+        return false;
+    });
+</script>
+</body>
+</html>
