@@ -6,10 +6,10 @@
 <body>
 <ul id="messages"></ul>
 <form action="">
-    <button id="clickBtn">Send</button>
+    <a onclick="clickBtn()">Send</a>
 </form>
 <script>
-    ws = new WebSocket("ws://localhost:8000");
+    ws = new WebSocket("ws://localhost:1234");
 
     ws.onopen =  () => {
         ws.send("test connect");
@@ -27,14 +27,9 @@
         console.log(errMsg)
     }
 
-    $('#clickBtn').click(function () {
-        s2.emit('start_task', "123123123");
-
-        socket.emit('notice', $('#m').val());
-
-        $('#m').val('');
-        return false;
-    });
+    function clickBtn() {
+      ws.send("test")
+    }
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"github.com/hpcloud/tail"
 	"log"
 	"net/http"
 )
@@ -49,6 +50,12 @@ func getMessage(c *gin.Context) {
 			break
 		}
 		fmt.Println(string(message))
+		config := tail.Config{MustExist: false, Follow: true}
+		t, _ := tail.TailFile("/Users/michibiki/code/log-viewer-service/test/resource/1.txt", config)
+		for line := range t.Lines {
+			ws.WriteMessage(mt, []byte(line.Text))
+			//fmt.Println(line.Text)
+		}
 		err = ws.WriteMessage(mt, message)
 		if err != nil {
 			break
