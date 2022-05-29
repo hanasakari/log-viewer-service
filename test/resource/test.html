@@ -7,6 +7,7 @@
 <ul id="messages"></ul>
 <form action="">
     <a onclick="clickBtn()">Send</a>
+    <div id="text"></div>
 </form>
 <script>
     ws = new WebSocket("ws://localhost:1234");
@@ -24,11 +25,12 @@
     }
 
     ws.onerror = (errMsg) => {
+        document.append()
         console.log(errMsg)
     }
 
     function clickBtn() {
-      ws.send("test")
+      ws.send("on")
     }
 </script>
 </body>
