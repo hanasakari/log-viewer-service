@@ -17,7 +17,7 @@ func readLog(wg *sync.WaitGroup, out chan string, reader io.ReadCloser) {
 		}
 	}()
 	defer wg.Done()
-	r := bufio.NewReader(reader)
+	r := bufio.NewReader(rea der)
 	for {
 		line, _, err := r.ReadLine()
 		if err == io.EOF || err != nil {
