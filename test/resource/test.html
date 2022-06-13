@@ -17,6 +17,7 @@
     }
 
     ws.onmessage = (message) => {
+        document.querySelector("#text").append(message)
         console.log(message)
     }
 
