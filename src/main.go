@@ -52,10 +52,12 @@ func getMessage(c *gin.Context) {
 		fmt.Println(string(message))
 		config := tail.Config{MustExist: false, Follow: true}
 		// filepathin message
-		t, _ := tail.TailFile(string(message), config)
-		if string(message) == "on" {
+		//t, _ := tail.TailFile(string(message), config)
+		t, _ := tail.TailFile("../log-viewer-service/test/resource/test.txt", config)
 
+		if string(message) == "on" {
 			for line := range t.Lines {
+				//fmt.Println(time.Now())
 				ws.WriteMessage(mt, []byte(line.Text))
 				//fmt.Println(line.Text)
 			}
@@ -64,7 +66,7 @@ func getMessage(c *gin.Context) {
 				break
 			}
 		} else {
-			t.Stop()
+			//t.Stop()
 		}
 
 	}
